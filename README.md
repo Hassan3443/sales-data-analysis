@@ -1,6 +1,8 @@
 # Sales Data Analysis
 
-Exploratory data analysis of two years of retail sales (3,269 orders) using Python, Pandas and Matplotlib: revenue trends, category and region performance, payment behavior and customer repeat rates, ending in a written set of business takeaways.
+![CI](https://github.com/Hassan3443/sales-data-analysis/actions/workflows/ci.yml/badge.svg) ![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-2.x-150458?logo=pandas&logoColor=white)
+
+Exploratory data analysis of two years of retail sales (3,269 orders) using Python, Pandas and Matplotlib: revenue trends, category and region performance, payment behavior and customer repeat rates, plus customer-level analytics (RFM segmentation, cohort retention and revenue concentration), ending in written business takeaways.
 
 ## Key findings
 
@@ -10,7 +12,11 @@ Exploratory data analysis of two years of retail sales (3,269 orders) using Pyth
 - **Credit Card** is the leading payment method (35.5% of revenue)
 - **66% repeat customer rate**, so re-engaging one-time buyers is the cheapest growth lever
 
-Full write-up in [reports/key_insights.md](reports/key_insights.md).
+- **Revenue is concentrated:** the top 20% of customers generate 53% of revenue
+- **RFM segmentation:** 126 Champions (8% of customers) bring 17% of revenue; 207 At Risk customers hold 23% of revenue and are the best win-back target
+- **Retention is thin:** only about 7% of a monthly cohort orders again one month after the first purchase
+
+Full write-ups: [reports/key_insights.md](reports/key_insights.md) and [reports/customer_insights.md](reports/customer_insights.md).
 
 ## Visualizations
 
@@ -26,6 +32,15 @@ Full write-up in [reports/key_insights.md](reports/key_insights.md).
 ### Payment Method Share
 ![Payment Method Share](figures/payment_method_share.png)
 
+### RFM Customer Segments
+![RFM Segments](figures/rfm_segments.png)
+
+### Cohort Retention
+![Cohort Retention](figures/cohort_retention.png)
+
+### Revenue Concentration
+![Pareto](figures/pareto_customers.png)
+
 ## Project structure
 
 ```
@@ -35,7 +50,9 @@ sales-data-analysis/
 ├── reports/key_insights.md      # written findings and takeaways
 ├── src/
 │   ├── generate_sales_data.py   # regenerates the dataset (fixed seed)
-│   └── analyze_sales.py         # the analysis: charts + insights
+│   ├── analyze_sales.py         # revenue, category, region, payment analysis
+│   └── customer_analysis.py     # RFM segments, cohort retention, Pareto
+├── tests/                       # pytest suite for the customer analysis
 └── requirements.txt
 ```
 
@@ -45,6 +62,8 @@ sales-data-analysis/
 pip install -r requirements.txt
 python src/generate_sales_data.py   # optional: dataset is included
 python src/analyze_sales.py
+python src/customer_analysis.py   # RFM, cohorts, Pareto
+python -m pytest tests -q
 ```
 
 Charts land in `figures/` and the written summary in `reports/key_insights.md`.
@@ -55,10 +74,12 @@ Charts land in `figures/` and the written summary in `reports/key_insights.md`.
 - Which categories and regions generate the most revenue?
 - How do customers prefer to pay?
 - What does the average order look like, and how loyal are customers?
+- Which customers are Champions, which are At Risk, and who is worth a win-back offer?
+- How quickly do new customers come back, and how concentrated is revenue?
 
 ## Tools
 
-Python, Pandas, Matplotlib
+Python, Pandas, NumPy, Matplotlib, pytest
 
 ## Note on the data
 
