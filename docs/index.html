@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retail sales analysis | Hassan Ashraf</title>
+<meta name="description" content="Two years of retail sales: filterable revenue, a tested forecast, cohort retention and RFM segments.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<a class="back" href="https://hassan3443.github.io/">← Portfolio</a>
+<p class="eyebrow">sales-data-analysis</p>
+<h1>Two years of retail sales, <span class="grad">tested forecast included</span></h1>
+<p class="lead">3,269 orders from 2024 and 2025. Filter the revenue view, then see how four simple forecasting models did in a backtest, how customers come back, and who the valuable ones are.</p>
+<p class="note" id="note"></p>
+<div class="filters">
+ <label>Year <select id="fy"><option value="">All</option><option>2024</option><option>2025</option></select></label>
+ <label>Region <select id="fr"></select></label>
+ <label>Category <select id="fc"></select></label>
+ <label>Payment <select id="fp"></select></label>
+ <button class="ghost" id="reset" type="button">Reset</button>
+</div>
+<div class="kpis" id="kpis"></div>
+<div class="grid">
+ <div class="card wide"><h2>Revenue per month <small id="trendSub"></small></h2><div id="trend"></div><div class="tip" id="tip"></div></div>
+ <div class="card wide"><h2>Forecast <small>all data, unfiltered</small></h2>
+  <p>Backtested before it is trusted: the models are scored on months they did not see. Two scoring methods are shown because they do not agree.</p>
+  <div id="fc1"></div>
+  <div class="grid" style="margin:14px 0 0"><div><table id="rolling"></table></div><div><table id="holdout"></table></div></div>
+  <div class="finding" id="fcNote"></div></div>
+ <div class="card wide"><h2>Cohort retention <small>% of each first-purchase month ordering again</small></h2>
+  <p>Grey means the month has not happened yet for that cohort. It is unknown, not zero.</p><div id="cohort"></div></div>
+ <div class="card"><h2>RFM segments</h2><div id="rfm"></div></div>
+ <div class="card"><h2>Revenue concentration</h2><div id="pareto"></div><div class="finding" id="parNote"></div></div>
+ <div class="card wide"><h2>Revenue by category, 2024 vs 2025</h2><div class="legend"><span><i style="background:#0d9488"></i>2024</span><span><i style="background:#2dd4bf"></i>2025</span></div><div id="yoy"></div></div>
+</div>
+<p class="foot">Source, tests and CI: <a href="https://github.com/Hassan3443/sales-data-analysis">github.com/Hassan3443/sales-data-analysis</a>.</p>
+</div>
+<script src="agg.js"></script><script src="app.js"></script></body></html>
